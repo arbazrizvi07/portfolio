@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'ac3r',
+	'username' => 'arbaz',
+	'password' => 'arbaz',
 	'database' => 'portfolio',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -91,6 +91,7 @@ $db['default'] = array(
 	'encrypt' => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
-	'failover' => array(),ss
+	'failover' => array(),
 	'save_queries' => TRUE
+
 );
