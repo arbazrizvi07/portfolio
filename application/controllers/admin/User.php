@@ -156,6 +156,7 @@ class User extends BaseController
      */
     function editOld($userId = NULL)
     {
+       
         if($this->isAdmin() == TRUE || $userId == 1)
         {
             $this->loadThis();
@@ -172,7 +173,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->loadViews("Users/editOld", $this->global, $data, NULL);
         }
     }
     

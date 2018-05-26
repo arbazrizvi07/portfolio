@@ -87,12 +87,14 @@ $route['deleteUser'] = "user/deleteUser";
 /*****************************************PROJECT ROUTES************************************/
 $route['projectListing'] = 'project/projectListing';
 $route['projectListing/(:num)'] = "project/projectListing/$1";
-$route['addNew'] = "project/addNew";
-$route['addNewProject'] = "project/addNewproject";
-$route['editOld'] = "project/editOld";
-$route['editOld/(:num)'] = "project/editOld/$1";
+$route['addNewProject'] = "project/addNew";
+$route['editOldProject'] = "project/editOld";
+$route['editOldProject/(:num)'] = "project/editOld/$1";
 $route['editProject'] = "project/editProject";
-$route['deleteproject'] = "project/deleteProject";
+$route['deleteProject'] = "project/deleteProject";
+
+
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

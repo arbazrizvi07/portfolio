@@ -5,7 +5,7 @@ require APPPATH . '/libraries/BaseController.php';
 /**
  * Class : User (UserController)
  * User Class to control all user related operations.
- * @author : Vidya Shevale
+ * @author : Kishor Mali
  * @version : 1.1
  * @since : 15 November 2016
  */

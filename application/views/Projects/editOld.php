@@ -1,16 +1,16 @@
 <?php
 
-$userId = '';
+$projectId = '';
 $name = '';
 $email = '';
 $mobile = '';
 $roleId = '';
 
-if(!empty($userInfo))
+if(!empty($projectInfo))
 {
-    foreach ($userInfo as $uf)
+    foreach ($projectInfo as $uf)
     {
-        $userId = $uf->userId;
+        $projectId = $uf->projectId;
         $name = $uf->name;
         $email = $uf->email;
         $mobile = $uf->mobile;
@@ -25,8 +25,8 @@ if(!empty($userInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
+        <i class="fa fa-work"></i> Project Management
+        <small>Add / Edit Project</small>
       </h1>
     </section>
     
@@ -41,18 +41,18 @@ if(!empty($userInfo))
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter User Details</h3>
+                        <h3 class="box-title">Enter Project Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
+                    <form role="form" action="<?php echo base_url() ?>editProject" method="post" id="editProject" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
                                         <label for="fname">Full Name</label>
                                         <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" value="<?php echo $name; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" id="userId" />    
+                                        <input type="hidden" value="<?php echo $projectId; ?>" name="projectId" id="projectId" />    
                                     </div>
                                     
                                 </div>
@@ -146,4 +146,4 @@ if(!empty($userInfo))
     </section>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/editProject.js" type="text/javascript"></script>
