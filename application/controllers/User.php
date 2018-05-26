@@ -5,7 +5,7 @@ require APPPATH . '/libraries/BaseController.php';
 /**
  * Class : User (UserController)
  * User Class to control all user related operations.
- * @author : Kishor Mali
+ * @author : Vidya Shevale
  * @version : 1.1
  * @since : 15 November 2016
  */
@@ -55,7 +55,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
             
-            $this->loadViews("users", $this->global, $data, NULL);
+            $this->loadViews("Users/users", $this->global, $data, NULL);
         }
     }
 
@@ -75,7 +75,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
 
-            $this->loadViews("addNew", $this->global, $data, NULL);
+            $this->loadViews("Users/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -172,7 +172,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->loadViews("Users/editOld", $this->global, $data, NULL);
         }
     }
     

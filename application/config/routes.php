@@ -55,20 +55,11 @@ $route['default_controller'] = "Welcome";
 $route['404_override'] = 'error';
 
 
-/*********** USER DEFINED ROUTES *******************/
+/***************************************** USER DEFINED ROUTES *****************************/
 
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
-$route['userListing'] = 'user/userListing';
-$route['userListing/(:num)'] = "user/userListing/$1";
-$route['addNew'] = "user/addNew";
-
-$route['addNewUser'] = "user/addNewUser";
-$route['editOld'] = "user/editOld";
-$route['editOld/(:num)'] = "user/editOld/$1";
-$route['editUser'] = "user/editUser";
-$route['deleteUser'] = "user/deleteUser";
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 $route['pageNotFound'] = "user/pageNotFound";
@@ -76,13 +67,32 @@ $route['checkEmailExists'] = "user/checkEmailExists";
 $route['login-history'] = "user/loginHistoy";
 $route['login-history/(:num)'] = "user/loginHistoy/$1";
 $route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
-
 $route['forgotPassword'] = "login/forgotPassword";
 $route['resetPasswordUser'] = "login/resetPasswordUser";
 $route['resetPasswordConfirmUser'] = "login/resetPasswordConfirmUser";
 $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
+
+/******************************************USER ROUTES **************************************/
+$route['userListing'] = 'user/userListing';
+$route['userListing/(:num)'] = "user/userListing/$1";
+$route['addNew'] = "user/addNew";
+$route['addNewUser'] = "user/addNewUser";
+$route['editOld'] = "user/editOld";
+$route['editOld/(:num)'] = "user/editOld/$1";
+$route['editUser'] = "user/editUser";
+$route['deleteUser'] = "user/deleteUser";
+
+/*****************************************PROJECT ROUTES************************************/
+$route['projectListing'] = 'project/projectListing';
+$route['projectListing/(:num)'] = "project/projectListing/$1";
+$route['addNew'] = "project/addNew";
+$route['addNewProject'] = "project/addNewproject";
+$route['editOld'] = "project/editOld";
+$route['editOld/(:num)'] = "project/editOld/$1";
+$route['editProject'] = "project/editProject";
+$route['deleteproject'] = "project/deleteProject";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

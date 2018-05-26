@@ -9,17 +9,13 @@ class Project_model extends CI_Model
      */
     function projectListingCount($searchText = '')
     {
-        $this->db->select('BaseTbl.projectId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->select('BaseTbl.projectId');
         $this->db->from('tbl_projects as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.projectName  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
         
         return $query->num_rows();
@@ -34,17 +30,14 @@ class Project_model extends CI_Model
      */
     function projectListing($searchText = '', $page, $segment)
     {
-        $this->db->select('BaseTbl.projectId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->select('BaseTbl.projectId, BaseTbl.projectName');
         $this->db->from('tbl_projects as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.projectName  LIKE '%".$searchText."%'
+                           )";
             $this->db->where($likeCriteria);
         }
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
         $this->db->limit($page, $segment);
         $query = $this->db->get();
         

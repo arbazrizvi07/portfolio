@@ -34,11 +34,8 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Mobile</th>
-                      <th>Role</th>
-                      <th class="text-center">Actions</th>
+                      <th>Project Name</th>
+                       <th class="text-center">Actions</th>
                     </tr>
                     <?php
                     if(!empty($projectRecords))
@@ -48,10 +45,8 @@
                     ?>
                     <tr>
                       <td><?php echo $record->projectId ?></td>
-                      <td><?php echo $record->name ?></td>
-                      <td><?php echo $record->email ?></td>
-                      <td><?php echo $record->mobile ?></td>
-                      <td><?php echo $record->role ?></td>
+                      <td><?php echo $record->projectName ?></td>
+                      
                       <td class="text-center">
                           <a class="btn btn-sm btn-primary" href="<?= base_url().'login-history/'.$record->projectId; ?>" title="Login history"><i class="fa fa-history"></i></a> | 
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->projectId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>

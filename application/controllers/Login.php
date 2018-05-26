@@ -3,7 +3,7 @@
 /**
  * Class : Login (LoginController)
  * Login class to control to authenticate user credentials and starts user's session.
- * @author : Kishor Mali
+ * @author : Vidya Shevale
  * @version : 1.1
  * @since : 15 November 2016
  */

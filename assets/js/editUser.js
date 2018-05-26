@@ -3,7 +3,7 @@
  * 
  * This file contain the validation of edit user form
  * 
- * @author Kishor Mali
+ * @author Vidya Shevale
  */
 $(document).ready(function(){
 	
