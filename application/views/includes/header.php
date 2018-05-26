@@ -139,7 +139,7 @@
             </li>
             <li class="treeview">
               <a href="<?php echo base_url(); ?>projectListing" >
-                <i class="fa fa-thumb-tack"></i>
+                <i class="fa fa-tasks"></i>
                 <span>Projects</span>
               </a>
             </li>
