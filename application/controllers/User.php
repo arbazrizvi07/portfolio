@@ -34,6 +34,7 @@ class User extends BaseController
     /**
      * This function is used to load the user list
      */
+    
     function userListing()
     {
         if($this->isAdmin() == TRUE)
@@ -41,7 +42,7 @@ class User extends BaseController
             $this->loadThis();
         }
         else
-        {        
+        {
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             

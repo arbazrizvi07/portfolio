@@ -3,13 +3,13 @@
 require APPPATH . '/libraries/BaseController.php';
 
 /**
- * Class : User (UserController)
- * User Class to control all user related operations.
+ * Class : Project (projectController)
+ * project Class to control all project related operations.
  * @author : Kishor Mali
  * @version : 1.1
  * @since : 15 November 2016
  */
-class User extends BaseController
+class Project extends BaseController
 {
     /**
      * This is default constructor of the class
@@ -17,12 +17,12 @@ class User extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('project_model');
         $this->isLoggedIn();   
     }
     
     /**
-     * This function used to load the first screen of the user
+     * This function used to load the first screen of the project
      */
     public function index()
     {
@@ -32,11 +32,11 @@ class User extends BaseController
     }
     
     /**
-     * This function is used to load the user list
+     * This function is used to load the project list
      */
-    function userListing()
+    
+    function projectListing()
     {
-       
         if($this->isAdmin() == TRUE)
         {
             $this->loadThis();
@@ -48,15 +48,15 @@ class User extends BaseController
             
             $this->load->library('pagination');
             
-            $count = $this->user_model->userListingCount($searchText);
+            $count = $this->project_model->projectListingCount($searchText);
 
-			$returns = $this->paginationCompress ( "userListing/", $count, 10 );
+			$returns = $this->paginationCompress ( "projectListing/", $count, 10 );
             
-            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
+            $data['projectRecords'] = $this->project_model->projectListing($searchText, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'CodeInsect : User Listing';
+            $this->global['pageTitle'] = 'CodeInsect : Project Listing';
             
-            $this->loadViews("users", $this->global, $data, NULL);
+            $this->loadViews("projects", $this->global, $data, NULL);
         }
     }
 
@@ -71,10 +71,10 @@ class User extends BaseController
         }
         else
         {
-            $this->load->model('user_model');
-            $data['roles'] = $this->user_model->getUserRoles();
+            $this->load->model('project_model');
+            $data['roles'] = $this->project_model->getprojectRoles();
             
-            $this->global['pageTitle'] = 'CodeInsect : Add New User';
+            $this->global['pageTitle'] = 'CodeInsect : Add New Project';
 
             $this->loadViews("addNew", $this->global, $data, NULL);
         }
@@ -85,13 +85,13 @@ class User extends BaseController
      */
     function checkEmailExists()
     {
-        $userId = $this->input->post("userId");
+        $projectId = $this->input->post("projectId");
         $email = $this->input->post("email");
 
-        if(empty($userId)){
-            $result = $this->user_model->checkEmailExists($email);
+        if(empty($projectId)){
+            $result = $this->project_model->checkEmailExists($email);
         } else {
-            $result = $this->user_model->checkEmailExists($email, $userId);
+            $result = $this->project_model->checkEmailExists($email, $projectId);
         }
 
         if(empty($result)){ echo("true"); }
@@ -99,9 +99,9 @@ class User extends BaseController
     }
     
     /**
-     * This function is used to add new user to the system
+     * This function is used to add new project to the system
      */
-    function addNewUser()
+    function addNewProject()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -130,19 +130,19 @@ class User extends BaseController
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
                 
-                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
+                $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
                                     'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
                 
-                $this->load->model('user_model');
-                $result = $this->user_model->addNewUser($userInfo);
+                $this->load->model('project_model');
+                $result = $this->project_model->addNewproject($projectInfo);
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New User created successfully');
+                    $this->session->set_flashdata('success', 'New Project created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User creation failed');
+                    $this->session->set_flashdata('error', 'Project creation failed');
                 }
                 
                 redirect('addNew');
@@ -152,26 +152,26 @@ class User extends BaseController
 
     
     /**
-     * This function is used load user edit information
-     * @param number $userId : Optional : This is user id
+     * This function is used load project edit information
+     * @param number $projectId : Optional : This is project id
      */
-    function editOld($userId = NULL)
+    function editOld($projectId = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        if($this->isAdmin() == TRUE || $projectId == 1)
         {
             $this->loadThis();
         }
         else
         {
-            if($userId == null)
+            if($projectId == null)
             {
-                redirect('userListing');
+                redirect('projectListing');
             }
             
-            $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($userId);
+            $data['roles'] = $this->project_model->getprojectRoles();
+            $data['projectInfo'] = $this->project_model->getprojectInfo($projectId);
             
-            $this->global['pageTitle'] = 'CodeInsect : Edit User';
+            $this->global['pageTitle'] = 'CodeInsect : Edit project';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -179,9 +179,9 @@ class User extends BaseController
     
     
     /**
-     * This function is used to edit the user information
+     * This function is used to edit the project information
      */
-    function editUser()
+    function editProject()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -191,7 +191,7 @@ class User extends BaseController
         {
             $this->load->library('form_validation');
             
-            $userId = $this->input->post('userId');
+            $projectId = $this->input->post('projectId');
             
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
@@ -202,7 +202,7 @@ class User extends BaseController
             
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($userId);
+                $this->editOld($projectId);
             }
             else
             {
@@ -212,42 +212,42 @@ class User extends BaseController
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
                 
-                $userInfo = array();
+                $projectInfo = array();
                 
                 if(empty($password))
                 {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
+                    $projectInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
                                     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
                 else
                 {
-                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
+                    $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
                         'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
                         'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
                 
-                $result = $this->user_model->editUser($userInfo, $userId);
+                $result = $this->project_model->editproject($projectInfo, $projectId);
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'User updated successfully');
+                    $this->session->set_flashdata('success', 'Project updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User updation failed');
+                    $this->session->set_flashdata('error', 'Project updation failed');
                 }
                 
-                redirect('userListing');
+                redirect('projectListing');
             }
         }
     }
 
 
     /**
-     * This function is used to delete the user using userId
+     * This function is used to delete the project using projectId
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteUser()
+    function deleteProject()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -255,10 +255,10 @@ class User extends BaseController
         }
         else
         {
-            $userId = $this->input->post('userId');
-            $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+            $projectId = $this->input->post('projectId');
+            $projectInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             
-            $result = $this->user_model->deleteUser($userId, $userInfo);
+            $result = $this->project_model->deleteproject($projectId, $projectInfo);
             
             if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
             else { echo(json_encode(array('status'=>FALSE))); }
@@ -277,7 +277,7 @@ class User extends BaseController
     
     
     /**
-     * This function is used to change the password of the user
+     * This function is used to change the password of the project
      */
     function changePassword()
     {
@@ -296,7 +296,7 @@ class User extends BaseController
             $oldPassword = $this->input->post('oldPassword');
             $newPassword = $this->input->post('newPassword');
             
-            $resultPas = $this->user_model->matchOldPassword($this->vendorId, $oldPassword);
+            $resultPas = $this->project_model->matchOldPassword($this->vendorId, $oldPassword);
             
             if(empty($resultPas))
             {
@@ -305,10 +305,10 @@ class User extends BaseController
             }
             else
             {
-                $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
+                $projectsData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
                                 'updatedDtm'=>date('Y-m-d H:i:s'));
                 
-                $result = $this->user_model->changePassword($this->vendorId, $usersData);
+                $result = $this->project_model->changePassword($this->vendorId, $projectsData);
                 
                 if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
                 else { $this->session->set_flashdata('error', 'Password updation failed'); }
@@ -330,9 +330,9 @@ class User extends BaseController
 
     /**
      * This function used to show login history
-     * @param number $userId : This is user id
+     * @param number $projectId : This is project id
      */
-    function loginHistoy($userId = NULL)
+    function loginHistoy($projectId = NULL)
     {
         if($this->isAdmin() == TRUE)
         {
@@ -340,13 +340,13 @@ class User extends BaseController
         }
         else
         {
-            $userId = ($userId == NULL ? $this->session->userdata("userId") : $userId);
+            $projectId = ($projectId == NULL ? $this->session->projectdata("projectId") : $projectId);
 
             $searchText = $this->input->post('searchText');
             $fromDate = $this->input->post('fromDate');
             $toDate = $this->input->post('toDate');
 
-            $data["userInfo"] = $this->user_model->getUserInfoById($userId);
+            $data["projectInfo"] = $this->project_model->getprojectInfoById($projectId);
 
             $data['searchText'] = $searchText;
             $data['fromDate'] = $fromDate;
@@ -354,13 +354,13 @@ class User extends BaseController
             
             $this->load->library('pagination');
             
-            $count = $this->user_model->loginHistoryCount($userId, $searchText, $fromDate, $toDate);
+            $count = $this->project_model->loginHistoryCount($projectId, $searchText, $fromDate, $toDate);
 
-            $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
+            $returns = $this->paginationCompress ( "login-history/".$projectId."/", $count, 5, 3);
 
-            $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
+            $data['projectRecords'] = $this->project_model->loginHistory($projectId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
-            $this->global['pageTitle'] = 'CodeInsect : User Login History';
+            $this->global['pageTitle'] = 'CodeInsect : Project Login History';
             
             $this->loadViews("loginHistory", $this->global, $data, NULL);
         }        
