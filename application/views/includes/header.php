@@ -137,6 +137,12 @@
                 <span>Task Uploads</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>projectListing" >
+                <i class="fa fa-tasks"></i>
+                <span>Projects</span>
+              </a>
+            </li>
             <?php
             }
             if($role == ROLE_ADMIN)

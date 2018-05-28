@@ -9,6 +9,7 @@ class Project_model extends CI_Model
      */
     function projectListingCount($searchText = '')
     {
+
         $this->db->select('BaseTbl.projectId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_projects as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
@@ -20,6 +21,14 @@ class Project_model extends CI_Model
         }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+
+        $this->db->select('BaseTbl.projectId');
+        $this->db->from('tbl_projects as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.projectName  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+
         $query = $this->db->get();
         
         return $query->num_rows();
@@ -34,6 +43,7 @@ class Project_model extends CI_Model
      */
     function projectListing($searchText = '', $page, $segment)
     {
+<<<<<<< HEAD
         $this->db->select('BaseTbl.projectId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_projects as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
@@ -45,6 +55,16 @@ class Project_model extends CI_Model
         }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+=======
+        $this->db->select('BaseTbl.projectId, BaseTbl.projectName');
+        $this->db->from('tbl_projects as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.projectName  LIKE '%".$searchText."%'
+                           )";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
         $this->db->limit($page, $segment);
         $query = $this->db->get();
         

@@ -5,7 +5,11 @@ require APPPATH . '/libraries/BaseController.php';
 /**
  * Class : Project (projectController)
  * project Class to control all project related operations.
+<<<<<<< HEAD
  * @author : Kishor Mali
+=======
+ * @author : Vidya Shevale
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
  * @version : 1.1
  * @since : 15 November 2016
  */
@@ -56,7 +60,10 @@ class Project extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Project Listing';
             
+
             $this->loadViews("projects", $this->global, $data, NULL);
+
+            $this->loadViews("Projects/projects", $this->global, $data, NULL);
         }
     }
 
@@ -76,7 +83,11 @@ class Project extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Add New Project';
 
+<<<<<<< HEAD
             $this->loadViews("addNew", $this->global, $data, NULL);
+=======
+            $this->loadViews("Projects/addNew", $this->global, $data, NULL);
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
         }
     }
 
@@ -111,12 +122,21 @@ class Project extends BaseController
         {
             $this->load->library('form_validation');
             
+<<<<<<< HEAD
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+=======
+            $this->form_validation->set_rules('projectName','Project Name','trim|required|max_length[128]');
+            /*$this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
+            $this->form_validation->set_rules('password','Password','required|max_length[20]');
+            $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
+            $this->form_validation->set_rules('role','Role','trim|required|numeric');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');*/
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
             
             if($this->form_validation->run() == FALSE)
             {
@@ -124,12 +144,17 @@ class Project extends BaseController
             }
             else
             {
+<<<<<<< HEAD
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = $this->security->xss_clean($this->input->post('email'));
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
                 
+=======
+                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('projectName'))));
+                               
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
                 $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
                                     'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
                 
@@ -173,7 +198,11 @@ class Project extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Edit project';
             
+<<<<<<< HEAD
             $this->loadViews("editOld", $this->global, $data, NULL);
+=======
+            $this->loadViews("Projects/editOld", $this->global, $data, NULL);
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
         }
     }
     
@@ -264,6 +293,7 @@ class Project extends BaseController
             else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
+<<<<<<< HEAD
     
     /**
      * This function is used to load the change password screen
@@ -317,6 +347,8 @@ class Project extends BaseController
             }
         }
     }
+=======
+>>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
 
     /**
      * Page not found : error 404

@@ -56,7 +56,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
             
-            $this->loadViews("users", $this->global, $data, NULL);
+            $this->loadViews("Users/users", $this->global, $data, NULL);
         }
     }
 
@@ -76,7 +76,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
 
-            $this->loadViews("addNew", $this->global, $data, NULL);
+            $this->loadViews("Users/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -173,7 +173,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->loadViews("Users/editOld", $this->global, $data, NULL);
         }
     }
     

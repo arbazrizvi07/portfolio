@@ -3,7 +3,7 @@
 /**
  * Class : Error (ErrorController)
  * Error class to redirect on errors
- * @author : Kishor Mali
+ * @author : Vidya Shevale
  * @version : 1.1
  * @since : 15 November 2016
  */
