@@ -90,10 +90,10 @@ class Project_model extends CI_Model
      */
     function getProjectInfo($projectId)
     {
-        $this->db->select('projectId, projectName,roleId');
+        $this->db->select('projectId, projectName');
         $this->db->from('tbl_projects');
         $this->db->where('isDeleted', 0);
-        $this->db->where('roleId !=', 1);
+      //  $this->db->where('roleId !=', 1);
         $this->db->where('projectId', $projectId);
         $query = $this->db->get();
 

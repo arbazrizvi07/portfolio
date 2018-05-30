@@ -65,6 +65,7 @@ class BaseController extends CI_Controller {
 	 * This function is used to check the access
 	 */
 	function isTicketter() {
+	    echo "$this->role ";die;
 		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
 			return true;
 		} else {

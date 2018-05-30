@@ -64,7 +64,6 @@ class Project extends BaseController
         }
     }
 
-
     /**
      * This function is used to load the add new form
      */
@@ -154,7 +153,7 @@ class Project extends BaseController
      */
     function editOld($projectId = NULL)
     {
-        if($this->isAdmin() == TRUE || $projectId == 1)
+        if($this->isAdmin() == TRUE )
         {
             $this->loadThis();
         }
@@ -166,6 +165,7 @@ class Project extends BaseController
             }
             
             $data['roles'] = $this->project_model->getprojectRoles();
+
             $data['projectInfo'] = $this->project_model->getprojectInfo($projectId);
             
             $this->global['pageTitle'] = 'CodeInsect : Edit project';
@@ -190,12 +190,12 @@ class Project extends BaseController
             
             $projectId = $this->input->post('projectId');
             
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
+            $this->form_validation->set_rules('projectName','Project Name','trim|required|max_length[128]');
+            /*$this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');*/
             
             if($this->form_validation->run() == FALSE)
             {
@@ -203,26 +203,17 @@ class Project extends BaseController
             }
             else
             {
-                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $email = $this->security->xss_clean($this->input->post('email'));
+                $projectName = strtoupper($this->security->xss_clean($this->input->post('projectName')));
+                /*$email = $this->security->xss_clean($this->input->post('email'));
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $mobile = $this->security->xss_clean($this->input->post('mobile'));*/
                 
                 $projectInfo = array();
                 
-                if(empty($password))
-                {
-                    $projectInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                else
-                {
-                    $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
+                $projectInfo = array('projectName'=>$projectName,'updatedBy'=>$this->vendorId,
                         'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                
+
                 $result = $this->project_model->editproject($projectInfo, $projectId);
                 
                 if($result == true)
