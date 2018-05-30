@@ -34,6 +34,7 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
+
                       <th>Project Name</th>
                        <th class="text-center">Actions</th>
                     </tr>

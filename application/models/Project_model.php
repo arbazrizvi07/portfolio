@@ -100,8 +100,7 @@ class Project_model extends CI_Model
         return $query->result();
     }
 
-
-    /**
+     /**
      * This function is used to update the project information
      * @param array $projectInfo : This is projects updated information
      * @param number $projectId : This is project id

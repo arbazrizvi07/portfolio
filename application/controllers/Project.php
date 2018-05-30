@@ -64,6 +64,7 @@ class Project extends BaseController
         }
     }
 
+
     /**
      * This function is used to load the add new form
      */
