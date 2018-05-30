@@ -59,9 +59,6 @@ class Project extends BaseController
             $data['projectRecords'] = $this->project_model->projectListing($searchText, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CodeInsect : Project Listing';
-            
-
-            $this->loadViews("projects", $this->global, $data, NULL);
 
             $this->loadViews("Projects/projects", $this->global, $data, NULL);
         }
@@ -83,31 +80,11 @@ class Project extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Add New Project';
 
-<<<<<<< HEAD
-            $this->loadViews("addNew", $this->global, $data, NULL);
-=======
             $this->loadViews("Projects/addNew", $this->global, $data, NULL);
->>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
+
         }
     }
 
-    /**
-     * This function is used to check whether email already exist or not
-     */
-    function checkEmailExists()
-    {
-        $projectId = $this->input->post("projectId");
-        $email = $this->input->post("email");
-
-        if(empty($projectId)){
-            $result = $this->project_model->checkEmailExists($email);
-        } else {
-            $result = $this->project_model->checkEmailExists($email, $projectId);
-        }
-
-        if(empty($result)){ echo("true"); }
-        else { echo("false"); }
-    }
     
     /**
      * This function is used to add new project to the system
@@ -121,22 +98,21 @@ class Project extends BaseController
         else
         {
             $this->load->library('form_validation');
-            
-<<<<<<< HEAD
+
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-=======
+
             $this->form_validation->set_rules('projectName','Project Name','trim|required|max_length[128]');
             /*$this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');*/
->>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
+
             
             if($this->form_validation->run() == FALSE)
             {
@@ -144,17 +120,12 @@ class Project extends BaseController
             }
             else
             {
-<<<<<<< HEAD
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = $this->security->xss_clean($this->input->post('email'));
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
-                
-=======
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('projectName'))));
-                               
->>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
                 $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
                                     'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
                 
@@ -197,12 +168,8 @@ class Project extends BaseController
             $data['projectInfo'] = $this->project_model->getprojectInfo($projectId);
             
             $this->global['pageTitle'] = 'CodeInsect : Edit project';
-            
-<<<<<<< HEAD
-            $this->loadViews("editOld", $this->global, $data, NULL);
-=======
+
             $this->loadViews("Projects/editOld", $this->global, $data, NULL);
->>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
         }
     }
     
@@ -293,62 +260,7 @@ class Project extends BaseController
             else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
-<<<<<<< HEAD
-    
-    /**
-     * This function is used to load the change password screen
-     */
-    function loadChangePass()
-    {
-        $this->global['pageTitle'] = 'CodeInsect : Change Password';
-        
-        $this->loadViews("changePassword", $this->global, NULL, NULL);
-    }
-    
-    
-    /**
-     * This function is used to change the password of the project
-     */
-    function changePassword()
-    {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('oldPassword','Old password','required|max_length[20]');
-        $this->form_validation->set_rules('newPassword','New password','required|max_length[20]');
-        $this->form_validation->set_rules('cNewPassword','Confirm new password','required|matches[newPassword]|max_length[20]');
-        
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->loadChangePass();
-        }
-        else
-        {
-            $oldPassword = $this->input->post('oldPassword');
-            $newPassword = $this->input->post('newPassword');
-            
-            $resultPas = $this->project_model->matchOldPassword($this->vendorId, $oldPassword);
-            
-            if(empty($resultPas))
-            {
-                $this->session->set_flashdata('nomatch', 'Your old password not correct');
-                redirect('loadChangePass');
-            }
-            else
-            {
-                $projectsData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
-                                'updatedDtm'=>date('Y-m-d H:i:s'));
-                
-                $result = $this->project_model->changePassword($this->vendorId, $projectsData);
-                
-                if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
-                else { $this->session->set_flashdata('error', 'Password updation failed'); }
-                
-                redirect('loadChangePass');
-            }
-        }
-    }
-=======
->>>>>>> fd14b3db3c91079b40cc702b918ac722b06286f6
+
 
     /**
      * Page not found : error 404
