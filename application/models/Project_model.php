@@ -113,8 +113,6 @@ class Project_model extends CI_Model
         return TRUE;
     }
 
-
-
     /**
      * This function is used to delete the project information
      * @param number $projectId : This is project id
