@@ -15,19 +15,19 @@ Unzip the zip file.
 
 Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
 
-Create a database with name "cias" and import the file "cias.sql" in that database.
+Create a database with name "portfolio" and import the file "portfolio.sql" in that database.
 
 Copy the remaining code into your root directory:
 
 for example, for windows
 
-**WAMP : c:/wamp/www/cias**
+**WAMP : c:/wamp/www/portfolio**
 
 OR
 
-**XAMPP : c:/xampp/htdocs/cias**
+**XAMPP : c:/xampp/htdocs/portfolio**
 
-Open browser; goto [localhost/cias](http://localhost/cias) and press enter:
+Open browser; goto [localhost/portfolio](http://localhost/portfolio) and press enter:
 
 The login screen will appear.
 
@@ -52,27 +52,3 @@ email : employee@example.com
 password : codeinsect
 
 Once you logged in with System Administrator account, you can create user or edit previous user if you want.
-
-**Youtube Links :**
-
-[CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
-
-[![CodeIgniter Admin Panel Demo](http://img.youtube.com/vi/RFRXUd8LHUM/0.jpg)](http://www.youtube.com/watch?v=RFRXUd8LHUM)
-
-[How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
-
-[![How to setup CodeIgniter Admin Panel](http://img.youtube.com/vi/tU1PbcRj7ww/0.jpg)](http://www.youtube.com/watch?v=tU1PbcRj7ww)
-
-
-**ISSUE # 1 : After login "loginMe" controller is not found :**
-
-Lot of people raising this issue, I resolved it 4-5 times for every user. People are not searching for closed issues. Thats why I am going to put this here.
-
-How to get over this issue?
-
-1) enable mod_rewrite.dll (or mod_rewrite.so) by removing leading # in httpd.conf.
-2) After that, follow this solution https://stackoverflow.com/questions/24472349/htaccess-doesnt-work-on-xampp-windows-7
-
-**ISSUE # 2 : Call to undefined function password_verify() :**
-
-Solution is here : [Call to undefined function password_verify()](https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter/issues/1)
