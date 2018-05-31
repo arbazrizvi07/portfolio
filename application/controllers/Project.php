@@ -99,12 +99,12 @@ class Project extends BaseController
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
+            /*$this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');*/
 
             $this->form_validation->set_rules('projectName','Project Name','trim|required|max_length[128]');
             /*$this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
@@ -120,14 +120,13 @@ class Project extends BaseController
             }
             else
             {
-                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $email = $this->security->xss_clean($this->input->post('email'));
+                $projectName = ucwords(strtolower($this->security->xss_clean($this->input->post('projectName'))));
+               /* $email = $this->security->xss_clean($this->input->post('email'));
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
-                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('projectName'))));
-                $projectInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
-                                    'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
+                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('projectName'))));*/
+                $projectInfo = array('projectName'=>$projectName, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
                 
                 $this->load->model('project_model');
                 $result = $this->project_model->addNewproject($projectInfo);
@@ -135,13 +134,15 @@ class Project extends BaseController
                 if($result > 0)
                 {
                     $this->session->set_flashdata('success', 'New Project created successfully');
+                    redirect('projectListing');
                 }
                 else
                 {
                     $this->session->set_flashdata('error', 'Project creation failed');
+                    redirect('addNew');
                 }
                 
-                redirect('addNew');
+
             }
         }
     }
@@ -237,12 +238,14 @@ class Project extends BaseController
      */
     function deleteProject()
     {
+
         if($this->isAdmin() == TRUE)
         {
             echo(json_encode(array('status'=>'access')));
         }
         else
         {
+
             $projectId = $this->input->post('projectId');
             $projectInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             

@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Project Management
+        <i class="fa fa-tasks"></i> Project Management
         <small>Add, Edit, Delete</small>
       </h1>
     </section>
@@ -51,7 +51,7 @@
                       <td class="text-center">
                           <a class="btn btn-sm btn-primary" href="<?= base_url().'login-history/'.$record->projectId; ?>" title="Login history"><i class="fa fa-history"></i></a> | 
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOldProject/'.$record->projectId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-sm btn-danger deleteProject" href="#" data-projectId="<?php echo $record->projectId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                          <a class="btn btn-sm btn-danger deleteProject" href="#" data-projectid="<?php echo $record->projectId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php

@@ -88,6 +88,7 @@ $route['deleteUser'] = "user/deleteUser";
 $route['projectListing'] = 'project/projectListing';
 $route['projectListing/(:num)'] = "project/projectListing/$1";
 $route['addNewProject'] = "project/addNew";
+$route['addNewProjectInfo'] = "project/addNewProject";
 $route['editOldProject'] = "project/editOld";
 $route['editOldProject/(:num)'] = "project/editOld/$1";
 $route['editProject'] = "project/editProject";

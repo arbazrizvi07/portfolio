@@ -6,7 +6,7 @@
 jQuery(document).ready(function(){
 	
 	jQuery(document).on("click", ".deleteProject", function(){
-		var projectId = $(this).data("projectId"),
+		var projectId = $(this).data("projectid"),
 			hitURL = baseURL + "deleteProject",
 			currentRow = $(this);
 		
@@ -14,6 +14,7 @@ jQuery(document).ready(function(){
 		
 		if(confirmation)
 		{
+
 			jQuery.ajax({
 			type : "POST",
 			dataType : "json",

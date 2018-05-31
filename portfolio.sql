@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 16, 2018 at 10:39 AM
+-- Generation Time: May 31, 2018 at 02:43 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.0.30-0ubuntu0.16.04.1
 
@@ -68,7 +68,56 @@ INSERT INTO `tbl_last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userA
 (10, 2, '{"role":"2","roleText":"Manager","name":"Manager"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-16 09:13:11'),
 (11, 2, '{"role":"2","roleText":"Manager","name":"Manager"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-16 09:21:42'),
 (12, 3, '{"role":"3","roleText":"Employee","name":"Employee"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-16 09:21:57'),
-(13, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-16 09:22:22');
+(13, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-16 09:22:22'),
+(14, 3, '{"role":"3","roleText":"Employee","name":"Employee"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-22 18:57:41'),
+(15, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-22 18:57:53'),
+(16, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-29 16:23:56'),
+(17, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-30 09:06:18'),
+(18, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-30 15:51:44'),
+(19, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-30 16:02:30'),
+(20, 1, '{"role":"1","roleText":"System Administrator","name":"System Administrator"}', '::1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Linux', '2018-05-31 14:03:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_projects`
+--
+
+CREATE TABLE `tbl_projects` (
+  `projectId` int(11) NOT NULL,
+  `projectName` varchar(150) NOT NULL,
+  `projectCategory` varchar(150) NOT NULL,
+  `companyNameORClientName` varchar(100) NOT NULL,
+  `logo` varchar(100) NOT NULL,
+  `duration` varchar(100) NOT NULL,
+  `projectURL` varchar(100) NOT NULL,
+  `technology` varchar(100) NOT NULL,
+  `databaseName` varchar(100) NOT NULL,
+  `framework` varchar(100) NOT NULL,
+  `projectManagementTool` varchar(100) NOT NULL,
+  `responsive` varchar(100) NOT NULL,
+  `os` varchar(100) NOT NULL,
+  `thirdPartyComponents` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `type` enum('Desktop','DesktopWeb','Mobile','MobileDesktop','MobileWeb','MobileWebDesktop','Web') NOT NULL,
+  `frameworkORCMSVersion` varchar(100) NOT NULL,
+  `versioning` varchar(100) NOT NULL,
+  `roleId` int(11) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  `createdBy` int(11) NOT NULL,
+  `createdDtm` datetime NOT NULL,
+  `updatedBy` int(11) NOT NULL,
+  `updatedDtm` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_projects`
+--
+
+INSERT INTO `tbl_projects` (`projectId`, `projectName`, `projectCategory`, `companyNameORClientName`, `logo`, `duration`, `projectURL`, `technology`, `databaseName`, `framework`, `projectManagementTool`, `responsive`, `os`, `thirdPartyComponents`, `description`, `type`, `frameworkORCMSVersion`, `versioning`, `roleId`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
+(1, 'HOLAAA', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Desktop', '', '', 0, 0, 1, '2018-05-31 14:27:32', 1, '2018-05-31 14:27:40'),
+(2, 'Aaa', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Desktop', '', '', 0, 1, 1, '2018-05-31 14:27:48', 1, '2018-05-31 14:41:04'),
+(3, 'Dfdf', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Desktop', '', '', 0, 1, 1, '2018-05-31 14:41:32', 1, '2018-05-31 14:41:35');
 
 -- --------------------------------------------------------
 
@@ -157,6 +206,12 @@ ALTER TABLE `tbl_last_login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_projects`
+--
+ALTER TABLE `tbl_projects`
+  ADD PRIMARY KEY (`projectId`);
+
+--
 -- Indexes for table `tbl_reset_password`
 --
 ALTER TABLE `tbl_reset_password`
@@ -182,7 +237,12 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_last_login`
 --
 ALTER TABLE `tbl_last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `tbl_projects`
+--
+ALTER TABLE `tbl_projects`
+  MODIFY `projectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_reset_password`
 --
