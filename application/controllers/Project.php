@@ -231,7 +231,6 @@ class Project extends BaseController
         }
     }
 
-
     /**
      * This function is used to delete the project using projectId
      * @return boolean $result : TRUE / FALSE

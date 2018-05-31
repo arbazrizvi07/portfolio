@@ -7,7 +7,6 @@
  * 
  * @author Vidya Shevale
  */
-
 $(document).ready(function(){
 	
 	var addProjectForm = $("#addProject");

@@ -1,8 +1,6 @@
 /**
  * @author Vidya Shevale
  */
-
-
 jQuery(document).ready(function(){
 	
 	jQuery(document).on("click", ".deleteProject", function(){

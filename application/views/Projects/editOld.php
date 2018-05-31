@@ -24,7 +24,8 @@ if(!empty($projectInfo))
         <small>Add / Edit Project</small>
       </h1>
     </section>
-    
+
+
     <section class="content">
     
         <div class="row">
